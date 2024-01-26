@@ -5,16 +5,23 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "test": "set DEBUG=* && jest --testPathPattern=test --coverage"
+    "test": "set DEBUG=* && jest --testPathPattern=test --coverage",
+    "migrate:create": "migrate create --template-file migrate/migration-template.js",
+    "migrate:up": "migrate up --store=\"./migrate/mongo-state-store.js\"",
+    "migrate:down": "migrate down --store=\"./migrate/mongo-state-store.js\"",
+    "migrate:list": "migrate list --store=\"./migrate/mongo-state-store.js\""
   },
   "author": "Christoph Fey",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "migrate": "^2.0.1",
+    "mongodb": "^6.3.0"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^4.2.0",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",
